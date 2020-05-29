@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', # required by all_auth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +54,16 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ci_shop.urls'
+
+AUTHENTICATION_BACKENDS = [
+    ...
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    ...
+]
 
 TEMPLATES = [
     {
@@ -69,6 +83,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ci_shop.wsgi.application'
 
+SITE_ID = 1
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases

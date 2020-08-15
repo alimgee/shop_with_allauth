@@ -21,6 +21,7 @@ def all_products(request):
             sort = sortkey
             if sortkey == 'name':
                 sortkey = 'lower_name'
+                messages.success(request, "sortkey is" + sortkey)
                 products = products.annotate(lower_name=Lower('name'))
             if sortkey == 'category':
                 sortkey = 'category__name'
@@ -45,7 +46,7 @@ def all_products(request):
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
-    messages.success(request, "sorting is " + current_sorting)
+    # messages.success(request, "sorting is " + current_sorting)
 
     context = {
         'products': products,

@@ -79,7 +79,7 @@
                         </div>
                     </li>
                     <li class="list-inline-item">
-                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="">
+                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
                             <div class="text-center">
                                 <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                                 <p class="my-0">
@@ -111,7 +111,18 @@
         </div>
     </header>
 
+    {% if messages %}
+    <div class="container">
+    <div class="row ">
+        <div class="col12">
+            {% for message in messages %}
+            <div class="message-container">{{ message }}<br><br></div>
+        {% endfor %}
+        </div>
+    </div>
+    </div>
 
+    {% endif %}
 
     {% block page_header %}
     {% endblock %}
@@ -121,18 +132,7 @@
 
     {% block postloadjs %}
     {% endblock %}
-    {% if messages %}
-    <div class="container">
-    <div class="row ">
-        <div class="col12">
-            {% for message in messages %}
-            <div class="message-container">{{ message }}</div>
-        {% endfor %}
-        </div>
-    </div>
-    </div>
 
-    {% endif %}
     
   </body>
 </html>

@@ -21,7 +21,6 @@ def all_products(request):
             sort = sortkey
             if sortkey == 'name':
                 sortkey = 'lower_name'
-                messages.success(request, "sortkey is" + sortkey)
                 products = products.annotate(lower_name=Lower('name'))
             if sortkey == 'category':
                 sortkey = 'category__name'
@@ -62,6 +61,7 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
+    
 
     context = {
         'product': product,
